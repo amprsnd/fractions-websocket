@@ -1,11 +1,11 @@
 <template>
   <div>
-    Home
+    Fractions
   </div>
 </template>
 
 <script>
 export default {
-  name: 'home'
+  name: 'fractions'
 }
 </script>

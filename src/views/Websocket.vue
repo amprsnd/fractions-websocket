@@ -1,11 +1,9 @@
 <template>
-  <div>
-    Home
-  </div>
+  <div>Websocket</div>
 </template>
 
 <script>
 export default {
-  name: 'home'
+  name: 'websocket'
 }
 </script>
