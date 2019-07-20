@@ -1,5 +1,7 @@
 <template>
-  <div>Websocket</div>
+  <div>
+    <h1>Websocket</h1>
+  </div>
 </template>
 
 <script>
