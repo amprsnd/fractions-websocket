@@ -13,10 +13,12 @@
           v-model="operations[i]"
         />
       </fraction>
-      <div class="result">
+      <div class="result" v-if="!message">
         <div class="equal">=</div>
-        <div class="integer">{{ result.int }}</div>
-        <div class="result-fraction">
+        <div class="integer" v-if="result.int !== 0 && result.num || result.num === 0 ">
+          {{ result.int }}
+        </div>
+        <div class="result-fraction" v-if="result.num">
           <div class="num">{{ result.num }}</div>
           <div class="den">{{ result.den }}</div>
         </div>
@@ -24,10 +26,13 @@
     </div>
     <button class="add" @click="addFraction">Добавить дробь</button>
     <button class="remove" @click="removeFraction" v-if="fractions.length > 2">Удалить дробь</button>
+    <div class="message" v-if="message">{{ message }}</div>
   </div>
 </template>
 
 <script>
+import functions from '../mixins/Fractions'
+
 import Fraction from '../components/Fraction'
 import Operator from '../components/Operator'
 
@@ -37,37 +42,45 @@ export default {
     Fraction,
     Operator
   },
+  mixins: [ functions ],
   data () {
     return {
+      message: '',
       fractions: [
         {
-          num: '',
-          den: ''
+          num: null,
+          den: null
         },
         {
-          num: '',
-          den: ''
+          num: null,
+          den: null
         }
       ],
       operations: [''],
       result: {
-        int: 0,
-        num: 0,
-        den: 0
+        int: null,
+        num: null,
+        den: null
       }
     }
   },
-  methods: {
-    addFraction () {
-      this.fractions.push({ num: '', den: '' })
-      this.operations.push('')
+  watch: {
+    fractions: {
+      handler: function () {
+        this.validateAndCalculate()
+      },
+      deep: true
     },
-    removeFraction () {
-      this.fractions.pop()
-      this.operations.pop()
+    operations: {
+      handler: function () {
+        this.validateAndCalculate()
+      },
+      deep: true
     }
+  },
+  beforeMount () {
+    this.validateFractions()
   }
-
 }
 </script>
 
@@ -112,7 +125,6 @@ export default {
     margin: 0.4rem 0;
   }
 
-  
   button {
     border: none;
     border-radius: 0.4rem;
@@ -126,6 +138,12 @@ export default {
   input:focus, select:focus, button:focus {
     outline: none;
     box-shadow: 0 0 0.5rem 0.1rem rgba(0, 0, 0, .1);
+  }
+
+  .message {
+    display: inline-block;
+    padding: 0.5rem;
+    margin: 1rem 0.5rem 1rem 0;
   }
 
 </style>

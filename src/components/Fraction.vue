@@ -4,13 +4,19 @@
       <input
         type="number"
         class="num"
-        v-model="fraction.num"
+        min="0"
+        step="1"
+        v-model.number="fraction.num"
+        oninput="validity.valid||(value='')"
         @input="$emit('input', fraction)"
       >
       <div class="divider"></div>
       <input
         type="number"
-        v-model="fraction.den"
+        min="1"
+        step="1"
+        v-model.number="fraction.den"
+        oninput="validity.valid||(value='')"
         @input="$emit('input', fraction)"
       >
     </div>
@@ -26,8 +32,8 @@ export default {
   data () {
     return {
       fraction: {
-        num: '',
-        den: ''
+        num: null,
+        den: null
       }
     }
   }
