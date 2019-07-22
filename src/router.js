@@ -21,7 +21,7 @@ export default new Router({
     {
       path: '/websocket',
       name: 'websocket',
-      component: () => import(/* webpackChunkName: "fractions" */ './views/Websocket.vue')
+      component: () => import(/* webpackChunkName: "websocket" */ './views/Websocket.vue')
     }
   ]
 })
