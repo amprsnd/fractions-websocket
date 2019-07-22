@@ -18,7 +18,7 @@
     </section>
     <footer>
       <div class="container">
-        footer
+        Пятаев Николай, 2019 г.
       </div>
     </footer>
   </div>
@@ -43,20 +43,34 @@
   header, section, footer, .container {
     width: 100%;
   }
+
+  header {
+    padding: 1rem 0;
+    background: #d8d8d8;
+  }
+
   .container {
     max-width: 1200px;
     margin: 0 auto;
   }
 
+  nav a, nav a:visited {
+    margin-right: 0.5rem;
+    color: #000;
+  }
+  nav a:hover {
+    text-decoration: none;
+  }
+
   section {
     flex-grow: 2;
   }
-  header {
-    background: #d8d8d8;
-  }
+
   footer {
-    color: #fff;
+    padding: 2rem 0 1rem 0;
+    font-size: 0.75rem;
     background: #2b2b2b;
+    color: #fff;
   }
 
   .fade-enter-active, .fade-leave-active {
